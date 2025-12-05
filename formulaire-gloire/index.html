@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌌 FORMULAIRE DE LA GLOIRE : ULTIMATE EDITION</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/level2.css">
+    <link rel="stylesheet" href="./css/level3.css">
+    <link rel="stylesheet" href="./css/level4.css">
+    <link rel="stylesheet" href="./css/jackpot.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="holo-scanlines"></div>
+    <div class="holo-glow"></div>
+    <div class="stars-bg"></div>
+
+    <div id="loading-screen" class="cinematic-screen">
+        <div class="cinematic-content">
+            <h1 class="glitch-title" data-text="FORMULAIRE DE LA GLOIRE">FORMULAIRE DE LA GLOIRE</h1>
+            <div class="terminal-loader">
+                <p>> INITIALISATION DU SYSTÈME...</p>
+                <p>> CHARGEMENT DES PROTOCOLES...</p>
+                <p class="blink">> EN ATTENTE DU PILOTE</p>
+            </div>
+            <button id="start-game" class="holo-btn big">
+                <i class="fas fa-power-off"></i> CONNEXION
+            </button>
+        </div>
+    </div>
+
+    <div id="game-container" class="hidden">
+        
+        <div id="global-hud" class="holo-panel top-panel">
+            <div class="score-display">SCORE: <span id="global-score">0</span></div>
+            <div class="combo-display hidden" id="combo-display">COMBO x1</div>
+            <div class="progress-track">
+                <div class="progress-bar" id="progress-fill"></div>
+            </div>
+            <div class="steps-display">
+                <span id="badge-nom" class="badge">ID</span>
+                <span id="badge-email" class="badge">COMM</span>
+                <span id="badge-sujet" class="badge">OBJ</span>
+                <span id="badge-message" class="badge">DATA</span>
+            </div>
+        </div>
+
+        <div id="level-nom" class="game-level active">
+            <div class="level-content">
+                <h2 class="holo-header">SECTEUR 1 : DÉFENSE ORBITALE</h2>
+                <div class="game-wrapper-l1 holo-frame">
+                    <canvas id="game-canvas-nom" width="800" height="500"></canvas>
+                    <div id="intro-overlay" class="level-overlay">
+                        <h3>IDENTIFICATION</h3>
+                        <input type="text" id="setup-name-input" maxlength="15" placeholder="PSEUDO" class="holo-input">
+                        <button id="start-meteor-rain" class="holo-btn">DÉFENDRE</button>
+                    </div>
+                    <div class="lives-hud" id="lives-display">❤️❤️❤️❤️❤️</div>
+                </div>
+                <div class="input-area-l1">
+                    <div class="hacker-input">
+                        <input type="text" id="nom-input" placeholder="_ _ _ _ _" readonly>
+                    </div>
+                </div>
+                <button id="next-level-2" class="holo-btn next hidden">SECTEUR SUIVANT >></button>
+            </div>
+        </div>
+
+        <div id="level-email" class="game-level hidden">
+            <div class="level-content">
+                <h2 class="holo-header">SECTEUR 2 : LABYRINTHE TACTIQUE</h2>
+                <div class="maze-wrapper holo-frame large-maze">
+                    <div id="grid-container"></div>
+                    <div class="maze-overlay" id="maze-start-overlay">
+                        <h3>INTRUSION SYSTÈME</h3>
+                        <p>FLÈCHES pour bouger. ESPACE pour tirer.</p>
+                        <input type="text" id="email-setup-input" placeholder="votre@email.com" class="holo-input">
+                        <button id="start-maze-btn" class="holo-btn">START</button>
+                    </div>
+                </div>
+                <div class="email-status-bar">
+                    <span id="part-user" class="status-bit">USER</span>
+                    <span id="part-at" class="status-bit">@</span>
+                    <span id="part-domain" class="status-bit">DOMAIN</span>
+                </div>
+                <input type="hidden" id="email-final">
+                <button id="next-level-3" class="holo-btn next hidden">VALIDER >></button>
+            </div>
+        </div>
+
+        <div id="level-sujet" class="game-level hidden">
+            <div class="level-content">
+                <h2 class="holo-header">SECTEUR 3 : ACQUISITION</h2>
+                <div class="radar-wrapper holo-frame">
+                    <div class="radar-scan"></div>
+                    <div class="radar-crosshair"></div>
+                    <div id="targets-layer"></div>
+                    
+                    <div id="delorean-egg" class="hidden">
+                        <div class="tenor-gif-embed" data-postid="11295533" data-share-method="host" data-aspect-ratio="1.95122" data-width="100%">
+                            <a href="https://tenor.com/view/delorean-time-travel-back-to-the-future-marty-mc-fly-gif-11295533">Delorean Time Travel GIF</a>from <a href="https://tenor.com/search/delorean-gifs">Delorean GIFs</a>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="sujet-readout holo-panel">
+                    <span id="sujet-final" class="value blink">EN ATTENTE...</span>
+                </div>
+                <button id="next-level-4" class="holo-btn next hidden">VERROUILLER >></button>
+            </div>
+        </div>
+
+        <div id="level-message" class="game-level hidden">
+            <div class="level-content">
+                <h2 class="holo-header">SECTEUR 4 : TRANSMISSION</h2>
+                <div class="cockpit-interface holo-frame">
+                    <div class="cockpit-header">
+                        <div class="signal-gauge">
+                            <span>SIGNAL</span>
+                            <div class="bar-bg"><div id="signal-bar"></div></div>
+                        </div>
+                        <div class="status-light" id="status-light"></div>
+                    </div>
+                    <textarea id="message-input" class="holo-textarea" placeholder="Journal de bord..."></textarea>
+                    
+                    <img id="buzz-egg" src="./assets/images/buzz.png" class="hidden">
+
+                    <div class="cockpit-controls">
+                        <button id="submit-form" class="holo-btn launch" disabled>
+                            <i class="fas fa-rocket"></i> ENVOYER
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div id="warp-overlay"></div>
+        </div>
+
+        <div id="jackpot-screen" class="game-level hidden">
+            <div class="jackpot-container">
+                <div class="slot-machine holo-frame">
+                    <div class="reel" id="reel1">🍒</div>
+                    <div class="reel" id="reel2">🍒</div>
+                    <div class="reel" id="reel3">🍒</div>
+                </div>
+                <div class="lever-container"><div id="slot-lever" class="lever-handle"></div></div>
+            </div>
+            <div id="jackpot-result" class="holo-panel hidden">
+                <h1 class="neon-text">MISSION ACCOMPLIE</h1>
+                <div class="final-score">SCORE FINAL: <span id="final-score-val">0</span></div>
+                <div class="highscore-board">
+                    <h3>🏆 TOP 5 CAPITAINES 🏆</h3>
+                    <ul id="highscore-list"><li>Chargement...</li></ul>
+                </div>
+                <button onclick="location.reload()" class="holo-btn">NOUVELLE MISSION</button>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="audio-bank" style="display:none;">
+        <audio id="bg-music" src="./assets/sounds/music.mp3" loop></audio>
+        <audio id="sfx-click" src="./assets/sounds/click.mp3"></audio>
+        <audio id="sfx-warp" src="./assets/sounds/warp.mp3"></audio>
+    </div>
+
+    <script src="./js/main.js"></script>
+    <script src="./js/level1.js"></script>
+    <script src="./js/level2.js"></script>
+    <script src="./js/level3.js"></script>
+    <script src="./js/level4.js"></script>
+    <script src="./js/jackpot.js"></script>
+    
+    <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
+</body>
+</html>

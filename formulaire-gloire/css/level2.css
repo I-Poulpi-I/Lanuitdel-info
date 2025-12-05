@@ -1,0 +1,60 @@
+.maze-wrapper {
+    width: 600px; height: 400px;
+    margin: 0 auto 20px;
+    position: relative;
+    background: 
+        linear-gradient(rgba(0, 243, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 243, 255, 0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+    overflow: hidden;
+}
+
+#grid-container { width: 100%; height: 100%; position: relative; }
+
+/* Entités */
+.entity {
+    position: absolute; width: 40px; height: 40px;
+    display: flex; justify-content: center; align-items: center;
+    font-size: 1.5rem; transition: transform 0.1s linear;
+}
+
+/* Le Joueur */
+.player-token { z-index: 10; filter: drop-shadow(0 0 5px white); }
+
+/* Murs (Blocs Néons) */
+.wall-token {
+    background: rgba(0, 243, 255, 0.2);
+    border: 1px solid var(--holo-cyan);
+    box-shadow: 0 0 10px var(--holo-cyan);
+}
+
+/* Mines (Champs de force) */
+.mine-token {
+    color: var(--holo-red);
+    animation: pulseRed 1s infinite;
+    font-size: 1.2rem;
+}
+
+/* Cibles */
+.item-token { 
+    animation: float 2s infinite ease-in-out;
+}
+
+/* Overlay Début */
+.maze-overlay {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,5,10,0.95);
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    gap: 15px; z-index: 50;
+}
+
+/* Barre de status */
+.email-status-bar {
+    display: flex; justify-content: center; gap: 15px;
+    font-size: 1.2rem; margin-bottom: 20px;
+}
+.status-bit { color: #444; border-bottom: 2px solid #444; padding: 5px; }
+.status-bit.collected { color: var(--holo-green); border-color: var(--holo-green); text-shadow: 0 0 10px var(--holo-green); }
+
+@keyframes pulseRed { 0% { opacity: 0.5; transform: scale(0.8); } 100% { opacity: 1; transform: scale(1); } }
+@keyframes float { 0% { transform: translateY(0); } 50% { transform: translateY(-5px); } }

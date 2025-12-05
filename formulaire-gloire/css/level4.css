@@ -1,0 +1,49 @@
+#level-message {
+    background: url('https://www.transparenttextures.com/patterns/stardust.png'), radial-gradient(circle, #0b1021, #000);
+}
+
+.cockpit-interface {
+    width: 800px; padding: 30px; margin: 0 auto;
+    background: rgba(0, 20, 40, 0.8);
+    backdrop-filter: blur(5px);
+}
+
+.cockpit-header {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 20px;
+}
+
+.signal-gauge { flex-grow: 1; margin-right: 20px; text-align: left; }
+.bar-bg { width: 100%; height: 10px; background: #111; border: 1px solid #333; margin-top: 5px; }
+#signal-bar { width: 0%; height: 100%; background: var(--holo-red); transition: width 0.2s, background 0.5s; box-shadow: 0 0 10px currentColor; }
+
+.status-light {
+    width: 20px; height: 20px; border-radius: 50%;
+    background: #333; border: 1px solid #555;
+    box-shadow: 0 0 5px #000;
+}
+.status-light.ready { background: var(--holo-green); box-shadow: 0 0 15px var(--holo-green); }
+
+.holo-textarea {
+    width: 100%; height: 200px;
+    background: rgba(0,0,0,0.5); border: 1px solid var(--holo-blue);
+    color: var(--holo-blue); padding: 15px;
+    font-family: inherit; font-size: 1.2rem;
+    resize: none; outline: none;
+}
+.holo-textarea:focus { box-shadow: inset 0 0 20px rgba(0, 243, 255, 0.2); }
+
+#warp-overlay {
+    position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0);
+    width: 5px; height: 5px; border-radius: 50%;
+    background: #fff; box-shadow: 0 0 50px 20px #fff;
+    pointer-events: none; z-index: 9999;
+}
+.warping #warp-overlay { animation: warp 2s forwards ease-in; }
+
+@keyframes warp {
+    0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+    10% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+    90% { transform: translate(-50%, -50%) scale(200); opacity: 1; }
+    100% { transform: translate(-50%, -50%) scale(500); opacity: 0; }
+}

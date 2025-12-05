@@ -1,0 +1,53 @@
+.radar-wrapper {
+    width: 800px; height: 450px;
+    margin: 0 auto;
+    background: radial-gradient(circle, #002200 0%, #000 80%);
+    border-color: var(--holo-green);
+    overflow: hidden;
+    cursor: crosshair;
+    position: relative;
+}
+
+.radar-scan {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent 50%, rgba(0, 255, 102, 0.1) 50%, rgba(0, 255, 102, 0.5) 51%, transparent 51%);
+    background-size: 200% 100%;
+    animation: radarScan 4s infinite linear;
+    pointer-events: none; z-index: 2;
+}
+
+.radar-crosshair {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: 100%; height: 1px; background: rgba(0, 255, 102, 0.3);
+    pointer-events: none;
+}
+.radar-crosshair::after {
+    content: ''; position: absolute; left: 50%; top: -225px;
+    width: 1px; height: 450px; background: rgba(0, 255, 102, 0.3);
+}
+
+.word-target {
+    position: absolute;
+    color: #fff;
+    padding: 5px 10px;
+    border: 1px solid #fff;
+    background: rgba(0,0,0,0.5);
+    cursor: crosshair;
+    transition: transform 0.1s;
+    z-index: 10;
+}
+.word-target:hover {
+    border-color: var(--holo-red);
+    color: var(--holo-red);
+    text-shadow: 0 0 10px var(--holo-red);
+    transform: scale(1.1);
+}
+
+.sujet-readout {
+    margin-top: 20px; padding: 15px;
+    background: #000; border: 1px solid var(--holo-green);
+    text-align: center; font-size: 1.5rem;
+}
+.sujet-readout .value { color: var(--holo-green); font-weight: bold; }
+
+@keyframes radarScan { 0% { background-position: 100% 0; } 100% { background-position: -100% 0; } }

@@ -1,0 +1,33 @@
+{
+  "name": "formulaire-de-la-gloire",
+  "version": "1.0.0",
+  "description": "Formulaire de contact ultime pour la Nuit de l'Info - Édition Arcade Spatiale",
+  "main": "server/server.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "dev": "nodemon server/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "nuit-info",
+    "formulaire",
+    "arcade",
+    "jeu",
+    "espace",
+    "retro"
+  ],
+  "author": "Ton Équipe",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "nodemailer": "^6.9.4",
+    "cors": "^2.8.5",
+    "body-parser": "^1.20.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

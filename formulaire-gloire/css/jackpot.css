@@ -1,0 +1,29 @@
+.jackpot-container {
+    display: flex; align-items: center; justify-content: center; gap: 30px;
+}
+.slot-machine {
+    display: flex; gap: 10px; padding: 20px;
+    background: #111; border: 4px solid gold;
+    box-shadow: 0 0 50px rgba(255, 215, 0, 0.5);
+}
+.reel {
+    width: 100px; height: 120px;
+    background: #fff; color: #000; font-size: 4rem;
+    display: flex; align-items: center; justify-content: center;
+    border: 2px solid #000;
+}
+.lever-handle {
+    width: 30px; height: 100px; background: var(--holo-red);
+    border-radius: 15px; cursor: pointer; transition: transform 0.3s;
+}
+.lever-handle.pulled { transform: scaleY(-1); }
+
+.neon-text {
+    font-size: 4rem; color: #fff;
+    text-shadow: 0 0 10px var(--holo-cyan), 0 0 20px var(--holo-cyan), 0 0 40px var(--holo-cyan);
+    animation: flicker 2s infinite;
+}
+@keyframes flicker {
+    0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
+    20%, 24%, 55% { opacity: 0.5; }
+}

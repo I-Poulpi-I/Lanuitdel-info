@@ -1,0 +1,263 @@
+:root {
+    --holo-cyan: #00f3ff;
+    --holo-blue: #0066ff;
+    --holo-red: #ff0055;
+    --holo-green: #00ff66;
+    --bg-dark: #02020a;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; user-select: none; }
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--holo-cyan);
+    font-family: 'Courier New', monospace;
+    overflow: hidden;
+    height: 100vh;
+}
+
+/* --- EFFETS DE FOND --- */
+.stars-bg {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+    z-index: -3;
+}
+.holo-scanlines {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%);
+    background-size: 100% 4px;
+    z-index: 999;
+    pointer-events: none;
+}
+.holo-glow {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: radial-gradient(circle, transparent 60%, rgba(0, 243, 255, 0.1) 100%);
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* --- UI COMPONENTS --- */
+.hidden { display: none !important; }
+
+.holo-btn {
+    background: rgba(0, 243, 255, 0.1);
+    border: 1px solid var(--holo-cyan);
+    color: var(--holo-cyan);
+    padding: 10px 25px;
+    font-family: inherit;
+    font-size: 1.2rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: all 0.3s;
+    box-shadow: 0 0 10px rgba(0, 243, 255, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+.holo-btn:hover:not(:disabled) {
+    background: var(--holo-cyan);
+    color: #000;
+    box-shadow: 0 0 20px var(--holo-cyan);
+}
+.holo-btn:disabled {
+    border-color: #555;
+    color: #555;
+    cursor: not-allowed;
+}
+
+.holo-input {
+    background: rgba(0,0,0,0.8);
+    border: 1px solid var(--holo-cyan);
+    color: var(--holo-cyan);
+    padding: 10px;
+    font-size: 1.2rem;
+    font-family: inherit;
+    text-align: center;
+    width: 100%;
+    outline: none;
+    box-shadow: inset 0 0 10px rgba(0, 243, 255, 0.2);
+}
+
+.holo-frame {
+    border: 2px solid var(--holo-cyan);
+    background: rgba(0, 20, 40, 0.6);
+    box-shadow: 0 0 15px rgba(0, 243, 255, 0.1), inset 0 0 20px rgba(0, 243, 255, 0.05);
+    position: relative;
+}
+/* Coins décoratifs */
+.holo-frame::before {
+    content: ''; position: absolute; top: -2px; left: -2px;
+    width: 20px; height: 20px;
+    border-top: 4px solid var(--holo-cyan); border-left: 4px solid var(--holo-cyan);
+}
+.holo-frame::after {
+    content: ''; position: absolute; bottom: -2px; right: -2px;
+    width: 20px; height: 20px;
+    border-bottom: 4px solid var(--holo-cyan); border-right: 4px solid var(--holo-cyan);
+}
+
+/* --- HUD GLOBAL --- */
+#global-hud {
+    position: fixed; top: 0; left: 0; width: 100%;
+    padding: 10px 20px;
+    background: rgba(0,0,0,0.8);
+    border-bottom: 1px solid var(--holo-cyan);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+}
+.score-display { font-size: 1.5rem; font-weight: bold; text-shadow: 0 0 10px var(--holo-cyan); }
+.progress-track { flex-grow: 1; height: 4px; background: #111; margin: 0 20px; position: relative; }
+.progress-bar { height: 100%; width: 0%; background: var(--holo-green); box-shadow: 0 0 10px var(--holo-green); transition: width 0.5s; }
+.badge { color: #444; font-size: 0.8rem; margin-left: 10px; }
+.badge.active { color: var(--holo-cyan); text-shadow: 0 0 5px var(--holo-cyan); border-bottom: 2px solid var(--holo-cyan); }
+
+/* --- CONTAINERS NIVEAUX --- */
+.game-level {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 60px;
+}
+.level-content { text-align: center; position: relative; z-index: 10; }
+.holo-header {
+    color: var(--holo-cyan);
+    margin-bottom: 20px;
+    font-size: 2rem;
+    text-shadow: 0 0 15px var(--holo-cyan);
+    text-transform: uppercase;
+}
+
+/* --- ACCUEIL --- */
+.cinematic-screen {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: #000; z-index: 2000;
+    display: flex; justify-content: center; align-items: center;
+}
+.glitch-title { font-size: 3rem; animation: glitch 2s infinite; position: relative; }
+.terminal-loader p { margin: 10px 0; opacity: 0.8; }
+.blink { animation: blink 1s infinite; }
+
+/* --- NIVEAU 1 SPÉCIFIQUE --- */
+.game-wrapper-l1 {
+    width: 800px; height: 500px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    background: rgba(0,0,0,0.8);
+}
+.level-overlay {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 10, 20, 0.95);
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
+    gap: 20px; z-index: 20;
+}
+.lives-hud {
+    position: absolute; top: 10px; right: 10px;
+    font-size: 1.5rem; letter-spacing: 5px;
+}
+.hacker-input {
+    margin-top: 20px;
+    border: 1px solid var(--holo-green);
+    padding: 10px;
+    background: #000;
+    display: inline-block;
+}
+.hacker-input input {
+    background: transparent; border: none; color: var(--holo-green);
+    font-size: 1.5rem; letter-spacing: 5px; width: 200px; text-align: center;
+}
+
+@keyframes glitch {
+    0% { transform: translate(0); }
+    20% { transform: translate(-2px, 2px); }
+    40% { transform: translate(-2px, -2px); }
+    60% { transform: translate(2px, 2px); }
+    80% { transform: translate(2px, -2px); }
+    100% { transform: translate(0); }
+}
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+/* --- EASTER EGGS ANIMATIONS --- */
+
+/* La DeLorean (Conteneur Tenor) */
+#delorean-egg {
+    position: absolute;
+    top: 50%;
+    left: -500px; /* Départ hors écran gauche */
+    width: 400px; /* Assez large pour que le GIF soit beau */
+    height: auto;
+    z-index: 50;
+    pointer-events: none; /* Clic traverse pour ne pas gêner */
+    transform: translateY(-50%);
+}
+
+.drive-by {
+    animation: driveBy 2.5s linear forwards; /* Un peu plus lent pour apprécier */
+}
+
+@keyframes driveBy {
+    0% { left: -500px; transform: translateY(-50%) rotate(0deg); opacity: 1; }
+    40% { transform: translateY(-55%) rotate(-2deg); }
+    60% { transform: translateY(-45%) rotate(2deg); }
+    90% { opacity: 1; }
+    100% { left: 120%; transform: translateY(-50%) rotate(0deg); opacity: 0; } /* Sortie écran droite */
+}
+
+/* Buzz l'Éclair qui pop */
+#buzz-egg {
+    position: absolute;
+    bottom: -300px; /* Caché en bas */
+    right: -50px;
+    width: 200px;
+    z-index: 50;
+    transition: bottom 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    filter: drop-shadow(0 0 20px #00ff00);
+}
+
+#buzz-egg.show {
+    bottom: 0;
+}
+
+/* --- EASTER EGGS ANIMATIONS --- */
+
+/* La DeLorean (Conteneur Tenor) */
+#delorean-egg {
+    position: absolute;
+    top: 50%;
+    left: -500px; /* Départ hors écran gauche */
+    width: 400px; /* Taille du GIF */
+    z-index: 50;
+    pointer-events: none;
+    transform: translateY(-50%);
+}
+
+.drive-by {
+    animation: driveBy 2.5s linear forwards;
+}
+
+@keyframes driveBy {
+    0% { left: -500px; transform: translateY(-50%) rotate(0deg); opacity: 1; }
+    40% { transform: translateY(-55%) rotate(-2deg); }
+    60% { transform: translateY(-45%) rotate(2deg); }
+    90% { opacity: 1; }
+    100% { left: 120%; transform: translateY(-50%) rotate(0deg); opacity: 0; }
+}
+
+/* Buzz l'Éclair */
+#buzz-egg {
+    position: absolute;
+    bottom: -300px; /* Caché en bas */
+    right: -50px;
+    width: 200px;
+    z-index: 60;
+    transition: bottom 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    filter: drop-shadow(0 0 20px #00ff00);
+}
+
+#buzz-egg.show {
+    bottom: 0; /* Apparaît */
+}
